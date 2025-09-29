@@ -21,6 +21,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CUDA_ARCHITECTURES 86)
 
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+find_package(CUDAToolkit REQUIRED)
 
 
 # set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xptxas -v")
@@ -37,7 +38,6 @@ add_executable(evaluate_mbm
 target_include_directories(evaluate_mbm
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/extern/vamp/src/impl
     ${CMAKE_CURRENT_SOURCE_DIR}/build/_deps/nigh-src/src
     ${CMAKE_CURRENT_SOURCE_DIR}/build/_deps/pdqsort-src
 )
@@ -47,6 +47,7 @@ target_link_libraries(evaluate_mbm
     PRIVATE
     nlohmann_json::nlohmann_json
     Eigen3::Eigen
+    CUDA::cudart
 )
 
 target_compile_options(evaluate_mbm PRIVATE
@@ -62,7 +63,6 @@ add_executable(single_mbm
 target_include_directories(single_mbm
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/extern/vamp/src/impl
     ${CMAKE_CURRENT_SOURCE_DIR}/build/_deps/nigh-src/src
     ${CMAKE_CURRENT_SOURCE_DIR}/build/_deps/pdqsort-src
 )
@@ -71,6 +71,7 @@ target_link_libraries(single_mbm
     PRIVATE
     nlohmann_json::nlohmann_json
     Eigen3::Eigen
+    CUDA::cudart
 )
 
 target_compile_options(single_mbm PRIVATE
