@@ -1,0 +1,11 @@
+/.cache/
+/.cpm-cache/
+/build/
+/cppadcg_build/
+/cppadcg_install/
+/pinocchio_build/
+/pinocchio_install/
+/debug/
+/output.data
+/output.json
+/*_fk.hh
